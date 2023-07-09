@@ -1,4 +1,3 @@
-import React from "react";
 import "./Sidebar.css";
 import Logo from "../../assets/logo_r.svg";
 
@@ -12,13 +11,32 @@ const Sidebar = () => {
         <div className="nav__menu">
           <ul className="nav__list">
             <li className="nav__item">
-              <a href="" className="nav__link">
-                <i className="icon-home"></i>
+              <a href="#home" className="nav__link">
+                <i className="fa-solid fa-house"></i>
               </a>
             </li>
+
             <li className="nav__item">
-              <a href="" className="nav__link">
-                <i className="icon-info"></i>
+              <a href="#about" className="nav__link">
+                <i className="fa-solid fa-circle-info"></i>
+              </a>
+            </li>
+
+            <li className="nav__item">
+              <a href="#archievement" className="nav__link">
+                <i className="fa-solid fa-star"></i>
+              </a>
+            </li>
+
+            <li className="nav__item">
+              <a href="#service" className="nav__link">
+                <i className="fa-solid fa-briefcase"></i>
+              </a>
+            </li>
+
+            <li className="nav__item">
+              <a href="#contact" className="nav__link">
+                <i className="fa-solid fa-message"></i>
               </a>
             </li>
           </ul>

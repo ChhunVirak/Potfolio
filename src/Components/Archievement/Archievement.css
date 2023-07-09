@@ -1,0 +1,20 @@
+.archievements__container {
+  row-gap: 1rem;
+}
+
+.archievements__image {
+  place-items: center;
+}
+
+.archievements__card {
+  padding: 0.875rem;
+  grid-template-columns: 2fr 9fr;
+  column-gap: 1rem;
+  background-color: var(--container-color);
+  border-radius: 0.875rem;
+  box-shadow: var(--shadow);
+}
+
+.archievements__description {
+  line-height: 1.5;
+}

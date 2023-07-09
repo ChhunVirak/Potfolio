@@ -34,6 +34,7 @@
   font-size: 1.3rem;
   transition: 0.3s;
 }
+
 .home__socials-link:hover {
   color: hsl(43, 100%, 68%);
 }
@@ -85,4 +86,18 @@
   left: 50%;
   transform: translateX(-50%);
   animation: ani-mouse 2s linear infinite;
+}
+
+@media screen and (max-width: 480px) {
+  .home {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scroll__down {
+    display: none;
+  }
 }

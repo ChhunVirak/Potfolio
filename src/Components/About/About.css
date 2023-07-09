@@ -1,7 +1,7 @@
 .about {
   min-height: 100vh;
-  background-color: wheat;
 }
+
 .about__container {
   grid-template-columns: 3fr 9fr;
   column-gap: 1.875rem;
@@ -69,4 +69,28 @@
 
 .skills__percentage {
   display: block;
+}
+
+@media screen and (max-width: 480px) {
+  .about {
+    min-height: auto;
+  }
+
+  .about__img {
+    display: none;
+  }
+
+  .about__data::before {
+    display: none;
+  }
+
+  .about__container {
+    column-gap: 10px;
+    grid-template-columns: none;
+  }
+
+  .about__data {
+    grid-template-columns: none;
+    row-gap: 1.875rem;
+  }
 }

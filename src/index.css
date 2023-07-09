@@ -102,6 +102,7 @@ img {
   padding-right: 15px;
   margin: 0 auto;
 }
+
 .grid {
   display: grid;
 }
@@ -110,6 +111,7 @@ img {
   padding-top: 7rem;
   padding-bottom: 2rem;
 }
+
 .section__title {
   font-size: var(--h1-font-size);
   margin-left: 0.875rem;
@@ -118,9 +120,9 @@ img {
   margin-bottom: 3.75rem;
 }
 
-.section_title::before {
+.section__title::before {
   content: "";
-  background: url(./assets/dots-bg.svg);
+  background: url(assets/dots-bg.svg);
   height: 2.25rem;
   width: 2.25rem;
   position: absolute;
@@ -151,4 +153,15 @@ img {
 
 .btn:hover {
   animation: button-push 0.3s linear 1;
+}
+
+@media screen and (max-width: 480px) {
+  .section__title {
+    margin-bottom: 1rem;
+  }
+
+  .section {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
 }
