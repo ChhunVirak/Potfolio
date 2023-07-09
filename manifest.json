@@ -1,0 +1,31 @@
+{
+  "index.css": {
+    "file": "assets/index-c65ef21e.css",
+    "src": "index.css"
+  },
+  "index.html": {
+    "assets": [
+      "assets/logo_r-4109b95f.svg",
+      "assets/my-profile-b8d2a446.png",
+      "assets/dots-bg-44ddd648.svg"
+    ],
+    "css": [
+      "assets/index-c65ef21e.css"
+    ],
+    "file": "assets/index-ca32f051.js",
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "src/assets/dots-bg.svg": {
+    "file": "assets/dots-bg-44ddd648.svg",
+    "src": "src/assets/dots-bg.svg"
+  },
+  "src/assets/logo_r.svg": {
+    "file": "assets/logo_r-4109b95f.svg",
+    "src": "src/assets/logo_r.svg"
+  },
+  "src/assets/my-profile.png": {
+    "file": "assets/my-profile-b8d2a446.png",
+    "src": "src/assets/my-profile.png"
+  }
+}
