@@ -1,4 +1,4 @@
-import "./Contact.css";
+import './Contact.css';
 
 const Contact = () => {
   return (
@@ -13,28 +13,16 @@ const Contact = () => {
         <form action="" className="contact__form">
           <div className="contact__form-group">
             <div className="contact__form-div">
-              <input
-                type="text"
-                placeholder="Insert your name"
-                className="contact__form-input"
-              />
+              <input type="text" placeholder="Insert your name" className="contact__form-input" />
             </div>
 
             <div className="contact__form-div">
-              <input
-                type="email"
-                placeholder="Insert your email"
-                className="contact__form-input"
-              />
+              <input type="email" placeholder="Insert your email" className="contact__form-input" />
             </div>
           </div>
 
           <div className="contact__form-div">
-            <input
-              type="text"
-              placeholder="Insert your subject"
-              className="contact__form-input"
-            />
+            <input type="text" placeholder="Insert your subject" className="contact__form-input" />
           </div>
 
           <div className="contact__form-div contact__form-area">

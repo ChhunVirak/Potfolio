@@ -6,13 +6,7 @@ interface ServiceCardInterface {
   bgColor: string;
 }
 
-const ServiceCard = ({
-  id,
-  image,
-  title,
-  des,
-  bgColor,
-}: ServiceCardInterface) => {
+const ServiceCard = ({ id, image, title, des, bgColor }: ServiceCardInterface) => {
   return (
     <div
       className="services__card"

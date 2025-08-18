@@ -1,7 +1,7 @@
-import "./About.css";
-import Me from "../../assets/my-profile.png";
+import './About.css';
+import Me from '../../assets/my-profile.png';
 
-import Skill from "./Skill";
+import Skill from './Skill';
 
 const About = () => {
   return (
@@ -12,9 +12,9 @@ const About = () => {
         <div className="about__data grid">
           <div className="about__info">
             <p className="about__description">
-              I am Chhoeung Chhun Virak, a Flutter Developer from Takeo,
-              Cambodia. I have rich experience in Mobile App Development with
-              Dart and Flutter Framework. also I am an Internship Trainer.
+              I am Chhoeung Chhun Virak, a Flutter Developer from Takeo, Cambodia. I have rich
+              experience in Mobile App Development with Dart and Flutter Framework. also I am an
+              Internship Trainer.
             </p>
             <button className="btn">Download CV</button>
           </div>

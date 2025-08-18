@@ -11,18 +11,10 @@ const HeaderSocials = () => {
       >
         <i className="fa-brands fa-square-facebook"></i>
       </a>
-      <a
-        href="https://t.me/VirakChhun"
-        className="home__socials-link"
-        target="_blank"
-      >
+      <a href="https://t.me/VirakChhun" className="home__socials-link" target="_blank">
         <i className="fa-brands fa-telegram"></i>
       </a>
-      <a
-        href="https://github.com/ChhunVirak"
-        className="home__socials-link"
-        target="_blank"
-      >
+      <a href="https://github.com/ChhunVirak" className="home__socials-link" target="_blank">
         <i className="fa-brands fa-github"></i>
       </a>
     </div>

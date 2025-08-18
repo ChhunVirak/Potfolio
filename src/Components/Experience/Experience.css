@@ -1,13 +1,13 @@
-.archievements__container {
+.experiences__container {
   row-gap: 1rem;
 }
 
-.archievements__image {
+.experiences__image {
   width: 10rem;
   place-items: center;
 }
 
-.archievements__card {
+.experiences__card {
   height: 12rem;
   padding: 0.875rem;
   grid-template-columns: 2fr 9fr;
@@ -17,8 +17,7 @@
   box-shadow: var(--shadow);
 }
 
-.archievements__title {
- 
+.experiences__title {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
@@ -26,6 +25,6 @@
   gap: 0.875rem;
 }
 
-.archievements__description {
+.experiences__description {
   line-height: 1.5;
 }
