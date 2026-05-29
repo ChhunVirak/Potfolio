@@ -1,27 +1,29 @@
-import "./App.css";
-import Sidebar from "./Components/Sidebar/Sidebar";
-import Home from "./Components/Home/Home";
-import About from "./Components/About/About";
-import Services from "./Components/Service/Services";
-import Contact from "./Components/Contact/Contact";
-import Archievement from "./Components/Archievement/Archievement";
+import Home from './Components/Home/Home';
+import Experience from './Components/Experience/Experiences';
+import Achievement from './Components/Achievement/Achievement';
+import TechStack from './Components/TechStack/TechStack';
+import GoTopButton from './Components/Common/GoTopButton';
+import Footer from './Components/Footer/Footer';
+import NavBar from './Components/Common/NavBar';
+import Contact from './Components/Social/Socials';
 
 function App() {
   if (window.location.hash) {
-    window.history.replaceState("", document.title, window.location.pathname);
+    window.history.replaceState('', document.title, window.location.pathname);
   }
+
   return (
     <>
-      <Sidebar />
-      <main className="main">
+      <NavBar />
+      <main>
         <Home />
-        <About />
-        <Archievement />
-        <Services />
+        <Experience />
+        <Achievement />
+        <TechStack />
         <Contact />
-        <a href="#" className="btn-top">
-          <i className="fa-solid fa-arrow-up"></i>
-        </a>
+        <Footer />
+
+        <GoTopButton />
       </main>
     </>
   );
