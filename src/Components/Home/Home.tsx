@@ -52,8 +52,8 @@ const Home = () => {
       {/* Left */}
       <div className='w-full md:w-1/2 flex md:flex-1 flex-col items-start justify-center'>
         <div className='w-full flex flex-col wrap-anywhere gap-1'>
-          <h1 className='text-black text-3xl font-thin'>CHHOEUNG</h1>
-          <h1 className='text-black text-5xl md:text-7xl font-display font-semibold'>
+          <h1 className='text-black dark:text-white text-3xl font-thin'>CHHOEUNG</h1>
+          <h1 className='text-black dark:text-white text-5xl md:text-7xl font-display font-semibold'>
             CHHUNVIRAK
           </h1>
         </div>
@@ -62,7 +62,7 @@ const Home = () => {
           I'm a{' '}
           <span className='font-medium'>
             {role}
-            <span className='inline-block w-px h-4 bg-black ml-0.5 align-middle animate-[blink_1s_step-end_infinite]' />
+            <span className='inline-block w-px h-4 bg-black dark:bg-white ml-0.5 align-middle animate-[blink_1s_step-end_infinite]' />
           </span>
         </p>
 

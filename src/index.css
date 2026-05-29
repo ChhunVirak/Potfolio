@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 @plugin "tailwind-plugin-typed" {
   delimiter: ';',
   typeLetterDuration: 0.1,
@@ -51,5 +52,5 @@ html {
 }
 
 body {
-   background-color: whitesmoke;
+  background-color: whitesmoke;
 }

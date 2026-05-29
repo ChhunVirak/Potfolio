@@ -22,12 +22,12 @@ const TechStack = () => {
         {Skills.map((e) => (
           <div
             key={e.name}
-            className='rounded-[calc(var(--radius-2xl)+1px)] border-1 border-transparent hover:border-black hover:cursor-pointer'
+            className='rounded-[calc(var(--radius-2xl)+1px)] border-1 border-transparent hover:border-black dark:hover:border-zinc-500 hover:cursor-pointer'
           >
-            <div className='w-full h-full px-4 py-3 flex flex-col border-[1px] border-black shadow-xl justify-end rounded-2xl box-border gap-2'>
+            <div className='w-full h-full px-4 py-3 flex flex-col border-[1px] border-black dark:border-zinc-700 dark:bg-zinc-800/50 shadow-xl justify-end rounded-2xl box-border gap-2'>
               {e.icon && (
                 <i
-                  className={`${e.icon} text-shadow-2xs text-black text-3xl`}
+                  className={`${e.icon} text-shadow-2xs text-3xl`}
                 ></i>
               )}
               <h3 className='text-lg font-normal font-display'>{e.name}</h3>
