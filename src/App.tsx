@@ -1,3 +1,4 @@
+import { useTheme } from './hooks/useTheme';
 import Home from './Components/Home/Home';
 import Experience from './Components/Experience/Experiences';
 import Achievement from './Components/Achievement/Achievement';
@@ -8,13 +9,15 @@ import NavBar from './Components/Common/NavBar';
 import Contact from './Components/Social/Socials';
 
 function App() {
+  const { dark, toggle } = useTheme();
+
   if (window.location.hash) {
     window.history.replaceState('', document.title, window.location.pathname);
   }
 
   return (
-    <>
-      <NavBar />
+    <div className='dark:bg-zinc-900 dark:text-white min-h-screen'>
+      <NavBar dark={dark} toggle={toggle} />
       <main>
         <Home />
         <Experience />
@@ -25,7 +28,7 @@ function App() {
 
         <GoTopButton />
       </main>
-    </>
+    </div>
   );
 }
 

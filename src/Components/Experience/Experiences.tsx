@@ -36,16 +36,15 @@ const Experience = () => {
   return (
     <FeatureSection
       id='experience'
-      title='Experience'
+      title='Experiences'
       subtitle='A Detailed Chronicle of My Professional Journey, Roles, Responsibilities, and Achievements in Software Development.'
     >
-      {' '}
       <div className='flex flex-col-reverse w-full gap-4'>
         {MyExperiences.map((value, index) => {
           return (
             <div key={index} className='flex items-stretch w-full gap-4'>
               <div
-                className={`w-full px-4 py-3 flex flex-col border-1 shadow-xl border-black rounded-2xl ${value.present ? 'bg-gray-50' : ''}`}
+                className={`w-full px-4 py-3 flex flex-col border-1 shadow-xl border-black dark:border-zinc-700 rounded-2xl ${value.present ? 'bg-gray-50 dark:bg-zinc-800' : 'dark:bg-zinc-800/50'}`}
               >
                 {value.present && (
                   <i className='fa-solid fa-map-pin text-red-600 text-lg'></i>

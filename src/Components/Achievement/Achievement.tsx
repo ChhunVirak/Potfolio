@@ -50,7 +50,7 @@ const Achievement = () => {
         {MyAchievements.map((item, index) => (
           <div
             key={index}
-            className='w-full px-4 py-3 flex flex-col border-1 border-black shadow-xl rounded-2xl gap-1'
+            className='w-full px-4 py-3 flex flex-col border-1 border-black dark:border-zinc-700 dark:bg-zinc-800/50 shadow-xl rounded-2xl gap-1'
           >
             <h3 className='text-lg font-display font-semibold'>{item.title}</h3>
             <span className='flex flex-wrap gap-2'>

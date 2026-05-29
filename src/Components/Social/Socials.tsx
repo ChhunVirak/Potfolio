@@ -23,7 +23,7 @@ const Contact = () => {
           <a
             key={social.id}
             href={social.link}
-            className='aspect-square w-10 border grid place-items-center rounded-full'
+            className='aspect-square w-10 border dark:border-zinc-600 grid place-items-center rounded-full hover:border-black dark:hover:border-white transition-colors'
             target='_blank'
           >
             <i className={`${social.icon} text-xl`}></i>
