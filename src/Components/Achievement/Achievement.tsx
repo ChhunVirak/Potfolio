@@ -5,37 +5,43 @@ const MyAchievements = [
     title: 'iBank KH',
     issuer: 'iBank (Cambodia) Plc',
     date: '2025',
-    description: 'Short description of the achievement or award.',
+    description:
+      'Developed and maintained digital banking features for the iBank KH mobile application.',
   },
   {
-    title: 'Personal and Profesional Certificate.',
+    title: 'Personal and Professional Certificate',
     issuer: 'iBank (Cambodia) Plc',
     date: '2023 - 2026',
-    description: 'Short description of the achievement or award.',
+    description:
+      'Received internal certifications for professional development and technical excellence.',
   },
   {
     title: 'BIC Mobile V3',
     issuer: 'BIC Bank Cambodia Plc.',
     date: '2023',
-    description: 'Short description of the achievement or award.',
+    description:
+      'Contributed to the development and enhancement of the BIC Mobile V3 banking application.',
   },
   {
     title: 'CIC App',
     issuer: 'Z1 Flexible Solution',
     date: '2022',
-    description: 'Short description of the achievement or award.',
+    description:
+      'Worked on mobile application features and improvements for the CIC App project.',
   },
   {
     title: 'Internship Trainer',
     issuer: 'Z1 Flexible Solution',
     date: '2022',
-    description: 'Trained 8 trainees, All passed',
+    description:
+      'Mentored and trained 8 internship trainees, with all trainees successfully completing the program.',
   },
   {
     title: 'Json To Freezed',
     issuer: 'Personal Tools',
     date: '2022',
-    description: 'Short description of the achievement or award.',
+    description:
+      'Built a utility tool to convert JSON models into Freezed classes for Flutter development.',
   },
 ];
 

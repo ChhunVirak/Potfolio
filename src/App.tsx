@@ -1,6 +1,7 @@
 import { useTheme } from './hooks/useTheme';
 import Home from './Components/Home/Home';
 import Experience from './Components/Experience/Experiences';
+import Education from './Components/Education/Education';
 import Achievement from './Components/Achievement/Achievement';
 import TechStack from './Components/TechStack/TechStack';
 import GoTopButton from './Components/Common/GoTopButton';
@@ -21,6 +22,7 @@ function App() {
       <main>
         <Home />
         <Experience />
+        <Education />
         <Achievement />
         <TechStack />
         <Contact />

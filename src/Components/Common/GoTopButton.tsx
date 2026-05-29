@@ -8,6 +8,7 @@ const GoTopButton = () => {
   const sectionIds = [
     'home',
     'experience',
+    'education',
     'achievements',
     'tech-stack',
     'contact',
