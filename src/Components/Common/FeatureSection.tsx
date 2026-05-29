@@ -12,7 +12,7 @@ export const FeatureSection = ({
   return (
     <section
       id={id}
-      className='pt-[calc(60px+5%)] w-full flex flex-col items-start px-[5%] gap-3'
+      className='pt-[calc(60px+5%)] w-full max-w-6xl mx-auto flex flex-col items-start px-[5%] gap-3'
     >
       <h2 className='bg-lime-400 text-black px-3 py-2 font-display font-semibold text-2xl animate-slide'>
         {title}

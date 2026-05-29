@@ -15,7 +15,7 @@ const NavBar = ({ dark, toggle }: Props) => {
 
   return (
     <nav className='fixed top-0 left-0 z-10 w-screen bg-white dark:bg-zinc-900 shadow-lg'>
-      <div className='h-[60px] px-[5%] flex flex-row justify-between items-center'>
+      <div className='h-[60px] px-[5%] max-w-6xl mx-auto flex flex-row justify-between items-center'>
         <a href='#home' className='font-bold font-display text-2xl'>
           Potfolio
         </a>
@@ -36,9 +36,9 @@ const NavBar = ({ dark, toggle }: Props) => {
           <button
             onClick={toggle}
             aria-label='Toggle dark mode'
-            className='w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-zinc-700 transition-colors'
+            className='w-8 h-8 flex items-center justify-center rounded-full border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors'
           >
-            <i className={`fa-solid ${dark ? 'fa-sun' : 'fa-moon'}`} />
+            <i className={`fa-solid ${dark ? 'fa-sun' : 'fa-moon'} text-sm`} />
           </button>
 
           {/* Mobile hamburger */}
