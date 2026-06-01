@@ -14,6 +14,16 @@
       content="black-translucent"
     /> -->
     <title>Chhoeung ChhunVirak's Potfolio</title>
+    <meta name="description" content="Flutter & React developer — Chhoeung Chhun Virak's portfolio." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Chhoeung Chhun Virak" />
+    <meta property="og:description" content="Flutter & React developer. Check out my portfolio and blog." />
+    <meta property="og:image" content="https://chhunvirak.github.io/Potfolio/og-image.jpg" />
+    <meta property="og:url" content="https://chhunvirak.github.io/Potfolio/profile" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chhoeung Chhun Virak" />
+    <meta name="twitter:description" content="Flutter & React developer. Check out my portfolio and blog." />
+    <meta name="twitter:image" content="https://chhunvirak.github.io/Potfolio/og-image.jpg" />
     <!-- Simple Line Icons -->
     <link
       rel="stylesheet"
@@ -25,10 +35,21 @@
       href="https://fonts.googleapis.com/css2?family=Koulen&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="./assets/index-DoufDs5v.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BAkU9lwF.css">
+    <script type="module" crossorigin src="./assets/index-DR0OlA2t.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BBsF3spo.css">
   </head>
   <body>
+    <script>
+      // Restore path encoded by 404.html when GitHub Pages redirects SPA routes
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      }(window.location));
+    </script>
     <div id="root"></div>
     <!-- Font-Awesome -->
     <script
