@@ -52,15 +52,19 @@ const Home = () => {
       {/* Left */}
       <div className='w-full md:w-1/2 flex md:flex-1 flex-col items-start justify-center gap-6'>
         <div className='flex flex-col gap-1'>
-          <p className='text-black dark:text-white text-2xl font-thin tracking-widest uppercase'>Chhoeung</p>
+          <p className='text-black dark:text-white text-2xl font-thin tracking-widest uppercase'>
+            Chhoeung
+          </p>
           <h1 className='text-black dark:text-white text-6xl md:text-8xl font-display font-bold leading-none'>
-            Chhun<br />Virak
+            Chhun
+            <br />
+            Virak
           </h1>
         </div>
 
         <p className='text-lg font-light'>
           I do{' '}
-          <span className='font-semibold'>
+          <span className='font-normal'>
             {role}
             <span className='inline-block w-px h-5 bg-black dark:bg-white ml-0.5 align-middle animate-[blink_1s_step-end_infinite]' />
           </span>

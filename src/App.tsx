@@ -1,36 +1,27 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
-import Home from './Components/Home/Home';
-import Experience from './Components/Experience/Experiences';
-import Education from './Components/Education/Education';
-import Achievement from './Components/Achievement/Achievement';
-import TechStack from './Components/TechStack/TechStack';
-import GoTopButton from './Components/Common/GoTopButton';
-import Footer from './Components/Footer/Footer';
 import NavBar from './Components/Common/NavBar';
-import Contact from './Components/Social/Socials';
+import GoTopButton from './Components/Common/GoTopButton';
+import PortfolioPage from './Pages/PortfolioPage';
+import BlogPage from './Pages/BlogPage';
 
 function App() {
   const { dark, toggle } = useTheme();
 
-  if (window.location.hash) {
-    window.history.replaceState('', document.title, window.location.pathname);
-  }
-
   return (
-    <div className='dark:bg-zinc-900 dark:text-white min-h-screen'>
-      <NavBar dark={dark} toggle={toggle} />
-      <main>
-        <Home />
-        <Experience />
-        <Education />
-        <Achievement />
-        <TechStack />
-        <Contact />
-        <Footer />
-
+    <BrowserRouter basename={import.meta.env.PROD ? '/Potfolio' : '/'}>
+      <div className='dark:bg-zinc-900 dark:text-white min-h-screen'>
+        <NavBar dark={dark} toggle={toggle} />
+        <main>
+          <Routes>
+            <Route path='/' element={<Navigate to='/potfolio' replace />} />
+            <Route path='/potfolio' element={<PortfolioPage />} />
+            <Route path='/blog' element={<BlogPage />} />
+          </Routes>
+        </main>
         <GoTopButton />
-      </main>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
