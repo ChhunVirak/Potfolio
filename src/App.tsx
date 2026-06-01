@@ -10,7 +10,7 @@ function App() {
   const { dark, toggle } = useTheme();
 
   return (
-    <BrowserRouter basename={import.meta.env.PROD ? '/Potfolio' : '/'}>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '') || '/'}>
       <div className='dark:bg-zinc-900 dark:text-white min-h-screen'>
         <NavBar dark={dark} toggle={toggle} />
         <main>
