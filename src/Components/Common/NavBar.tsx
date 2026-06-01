@@ -51,6 +51,14 @@ const NavBar = ({ dark, toggle }: Props) => {
                 Blog
               </Link>
             </li>
+            <li>
+              <Link
+                to='/profile'
+                className={`hover:text-lime-400 transition-colors ${pathname === '/profile' ? 'text-lime-400' : ''}`}
+              >
+                Profile
+              </Link>
+            </li>
           </ul>
 
           {/* Dark mode toggle */}
@@ -96,6 +104,15 @@ const NavBar = ({ dark, toggle }: Props) => {
               onClick={() => setOpen(false)}
             >
               Blog
+            </Link>
+          </li>
+          <li>
+            <Link
+              to='/profile'
+              className='block px-[5%] py-3 hover:text-lime-400 transition-colors'
+              onClick={() => setOpen(false)}
+            >
+              Profile
             </Link>
           </li>
         </ul>
