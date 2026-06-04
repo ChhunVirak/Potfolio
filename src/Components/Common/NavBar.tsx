@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const SECTION_LINKS = [
   { label: 'Home', id: 'home', icon: 'fa-house' },
@@ -15,9 +15,11 @@ type Props = { dark: boolean; toggle: () => void };
 const NavBar = ({ dark, toggle }: Props) => {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobilePortfolioOpen, setMobilePortfolioOpen] = useState(false);
   const [homeVisible, setHomeVisible] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const isPortfolio = pathname === '/potfolio' || pathname === '/';
 
   useEffect(() => {
@@ -35,6 +37,7 @@ const NavBar = ({ dark, toggle }: Props) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setOpen(false);
     setDropdownOpen(false);
+    setMobilePortfolioOpen(false);
   };
 
   useEffect(() => {
@@ -63,37 +66,44 @@ const NavBar = ({ dark, toggle }: Props) => {
         <div className='flex items-center gap-4'>
           {/* Desktop links */}
           <ul className='hidden md:flex gap-6 font-normal items-center'>
-            {/* Sections dropdown (portfolio page only) */}
-            {isPortfolio && (
-              <li className='relative' ref={dropdownRef}>
-                <button
-                  onClick={() => setDropdownOpen((v) => !v)}
-                  className='flex items-center gap-1 hover:text-lime-400 transition-colors'
-                >
-                  Potfolio
-                  <i
-                    className={`fa-solid fa-chevron-down text-xs transition-transform ${dropdownOpen ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                {dropdownOpen && (
-                  <ul className='absolute top-full left-0 mt-2 w-40 bg-white dark:bg-zinc-900 shadow-lg rounded-md border border-gray-100 dark:border-zinc-800 py-1'>
-                    {SECTION_LINKS.map((link) => (
-                      <li key={link.id}>
+            {/* Potfolio sections dropdown */}
+            <li className='relative' ref={dropdownRef}>
+              <button
+                onClick={() => setDropdownOpen((v) => !v)}
+                className={`flex items-center gap-1 hover:text-lime-400 transition-colors ${isPortfolio ? 'text-lime-400' : ''}`}
+              >
+                Potfolio
+                <i
+                  className={`fa-solid fa-chevron-down text-xs transition-transform ${dropdownOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+              {dropdownOpen && (
+                <ul className='absolute top-full left-0 mt-2 w-40 bg-white dark:bg-zinc-900 shadow-lg rounded-md border border-gray-100 dark:border-zinc-800 py-1'>
+                  {SECTION_LINKS.map((link) => (
+                    <li key={link.id}>
+                      {isPortfolio ? (
                         <button
                           onClick={() => scrollTo(link.id)}
                           className='flex items-center gap-2 w-full text-left px-4 py-2 hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
                         >
-                          <i
-                            className={`fa-solid ${link.icon} w-4 text-center text-xs`}
-                          />
+                          <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
                           {link.label}
                         </button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            )}
+                      ) : (
+                        <button
+                          onClick={() => { navigate('/potfolio', { state: { scrollTo: link.id } }); setDropdownOpen(false); }}
+                          className='flex items-center gap-2 w-full text-left px-4 py-2 hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
+                        >
+                          <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
+                          {link.label}
+                        </button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
             <li>
               <Link
                 to='/blog'
@@ -136,24 +146,50 @@ const NavBar = ({ dark, toggle }: Props) => {
       {/* Mobile menu */}
       {open && (
         <ul className='md:hidden flex flex-col border-t border-gray-100 dark:border-zinc-800 bg-white dark:bg-zinc-900'>
-          {isPortfolio &&
-            SECTION_LINKS.map((link) => (
-              <li key={link.id}>
-                <button
-                  onClick={() => scrollTo(link.id)}
-                  className='flex items-center gap-2 w-full text-left px-[5%] py-3 hover:text-lime-400 transition-colors'
-                >
-                  <i
-                    className={`fa-solid ${link.icon} w-4 text-center text-xs`}
-                  />
-                  {link.label}
-                </button>
-              </li>
-            ))}
+          {/* Potfolio group */}
+          <li>
+            <button
+              onClick={() => setMobilePortfolioOpen((v) => !v)}
+              className={`flex items-center gap-2 w-full text-left px-[5%] py-3 hover:text-lime-400 transition-colors ${isPortfolio ? 'text-lime-400' : ''}`}
+            >
+              <i className='fa-solid fa-briefcase-blank w-4 text-center text-xs' />
+              Potfolio
+              <i
+                className={`fa-solid fa-chevron-down text-xs ml-auto transition-transform ${mobilePortfolioOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+            {mobilePortfolioOpen && (
+              <ul className='flex flex-col bg-gray-50 dark:bg-zinc-800/50 border-t border-gray-100 dark:border-zinc-700'>
+                {SECTION_LINKS.map((link) => (
+                  <li key={link.id}>
+                    {isPortfolio ? (
+                      <button
+                        onClick={() => scrollTo(link.id)}
+                        className='flex items-center gap-2 w-full text-left pl-[calc(5%+1rem)] pr-[5%] py-2.5 hover:text-lime-400 transition-colors text-sm'
+                      >
+                        <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
+                        {link.label}
+                      </button>
+                    ) : (
+                      <Link
+                        to={`/potfolio#${link.id}`}
+                        onClick={() => { setOpen(false); setMobilePortfolioOpen(false); }}
+                        className='flex items-center gap-2 pl-[calc(5%+1rem)] pr-[5%] py-2.5 hover:text-lime-400 transition-colors text-sm'
+                      >
+                        <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+
           <li>
             <Link
               to='/blog'
-              className='flex items-center gap-2 px-[5%] py-3 hover:text-lime-400 transition-colors'
+              className={`flex items-center gap-2 px-[5%] py-3 hover:text-lime-400 transition-colors ${pathname === '/blog' ? 'text-lime-400' : ''}`}
               onClick={() => setOpen(false)}
             >
               <i className='fa-solid fa-rss w-4 text-center text-xs' />
