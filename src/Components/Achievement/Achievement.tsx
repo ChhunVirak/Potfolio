@@ -50,6 +50,7 @@ const Achievement = () => {
     <FeatureSection
       id='achievements'
       title='Achievements'
+      icon='fa-trophy'
       subtitle='Certifications, Awards, and Milestones That Mark My Professional Growth.'
     >
       <div className='flex flex-col w-full gap-4'>

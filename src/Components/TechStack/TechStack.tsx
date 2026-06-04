@@ -16,6 +16,7 @@ const TechStack = () => {
     <FeatureSection
       id='tech-stack'
       title='Tech Stack'
+      icon='fa-layer-group'
       subtitle='An In-Depth Look at the Technologies, Tools, and Frameworks We Use to Build High-Quality Solutions'
     >
       <div className='w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>

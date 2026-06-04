@@ -37,6 +37,7 @@ const Experience = () => {
     <FeatureSection
       id='experience'
       title='Experiences'
+      icon='fa-briefcase'
       subtitle='A Detailed Chronicle of My Professional Journey, Roles, Responsibilities, and Achievements in Software Development.'
     >
       <div className='flex flex-col-reverse w-full gap-4'>

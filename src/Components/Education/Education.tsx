@@ -28,6 +28,7 @@ const Education = () => {
     <FeatureSection
       id='education'
       title='Education'
+      icon='fa-graduation-cap'
       subtitle='Academic Background and Scholarships That Shaped My Technical Foundation.'
     >
       <div className='flex flex-col w-full gap-4'>

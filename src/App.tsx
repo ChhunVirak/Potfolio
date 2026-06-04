@@ -4,7 +4,6 @@ import NavBar from './Components/Common/NavBar';
 import GoTopButton from './Components/Common/GoTopButton';
 import PortfolioPage from './Pages/PortfolioPage';
 import BlogPage from './Pages/BlogPage';
-import ProfilePage from './Pages/ProfilePage';
 
 function App() {
   const { dark, toggle } = useTheme();
@@ -18,7 +17,6 @@ function App() {
             <Route path='/' element={<Navigate to='/potfolio' replace />} />
             <Route path='/potfolio' element={<PortfolioPage />} />
             <Route path='/blog' element={<BlogPage />} />
-            <Route path='/profile' element={<ProfilePage />} />
           </Routes>
         </main>
         <GoTopButton />

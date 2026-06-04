@@ -9,6 +9,11 @@ const Socials = [
     icon: 'fa-brands fa-facebook',
     link: 'https://www.facebook.com/somnang.chan.52',
   },
+  {
+    id: 5,
+    icon: 'fa-brands fa-google',
+    link: 'mailto:chhunvirakchhoeung@gmail.com',
+  },
 ];
 
 const Contact = () => {
@@ -16,6 +21,7 @@ const Contact = () => {
     <FeatureSection
       title='Contact'
       id='contact'
+      icon='fa-envelope'
       subtitle='Get in Touch With Us to Discuss Opportunities, Partnerships, or Any Questions You May Have'
     >
       <div className='flex gap-2'>
