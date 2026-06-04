@@ -7,6 +7,7 @@ import Achievement from '../Components/Achievement/Achievement';
 import TechStack from '../Components/TechStack/TechStack';
 import Contact from '../Components/Social/Socials';
 import Footer from '../Components/Footer/Footer';
+import GoTopButton from '../Components/Common/GoTopButton';
 
 const PortfolioPage = () => {
   const { state } = useLocation();
@@ -27,6 +28,7 @@ const PortfolioPage = () => {
       <TechStack />
       <Contact />
       <Footer />
+      <GoTopButton />
     </>
   );
 };

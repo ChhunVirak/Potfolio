@@ -10,7 +10,7 @@
     "dev": "vite",
     "devh": "vite --host",
     "build": "tsc && vite build",
-    "postbuild": "mkdir -p dist/potfolio dist/blog dist/profile && cp dist/index.html dist/potfolio/index.html && cp dist/index.html dist/blog/index.html && cp dist/index.html dist/profile/index.html",
+    "postbuild": "mkdir -p dist/blog && cp dist/index.html dist/blog/index.html",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

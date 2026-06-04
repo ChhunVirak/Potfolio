@@ -1,7 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
 import NavBar from './Components/Common/NavBar';
-import GoTopButton from './Components/Common/GoTopButton';
 import PortfolioPage from './Pages/PortfolioPage';
 import BlogPage from './Pages/BlogPage';
 import BlogDetailPage from './Pages/BlogDetailPage';
@@ -15,13 +14,11 @@ function App() {
         <NavBar dark={dark} toggle={toggle} />
         <main>
           <Routes>
-            <Route path='/' element={<Navigate to='/potfolio' replace />} />
-            <Route path='/potfolio' element={<PortfolioPage />} />
+            <Route path='/' element={<PortfolioPage />} />
             <Route path='/blog' element={<BlogPage />} />
             <Route path='/blog/:id' element={<BlogDetailPage />} />
           </Routes>
         </main>
-        <GoTopButton />
       </div>
     </BrowserRouter>
   );

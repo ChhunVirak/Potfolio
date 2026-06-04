@@ -20,7 +20,7 @@ const NavBar = ({ dark, toggle }: Props) => {
   const dropdownRef = useRef<HTMLLIElement>(null);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const isPortfolio = pathname === '/potfolio' || pathname === '/';
+  const isPortfolio = pathname === '/';
 
   useEffect(() => {
     const el = document.getElementById('home');
@@ -57,7 +57,7 @@ const NavBar = ({ dark, toggle }: Props) => {
     <nav className='fixed top-0 left-0 z-10 w-screen bg-white dark:bg-zinc-900 shadow-lg'>
       <div className='h-[60px] px-[5%] flex flex-row justify-between items-center'>
         <Link
-          to='/potfolio'
+          to='/'
           className='font-bold font-display text-xl transition-all'
         >
           {homeVisible ? 'Potfolio' : 'Chhunvirak'}
@@ -91,7 +91,7 @@ const NavBar = ({ dark, toggle }: Props) => {
                         </button>
                       ) : (
                         <button
-                          onClick={() => { navigate('/potfolio', { state: { scrollTo: link.id } }); setDropdownOpen(false); }}
+                          onClick={() => { navigate('/', { state: { scrollTo: link.id } }); setDropdownOpen(false); }}
                           className='flex items-center gap-2 w-full text-left px-4 py-2 hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
                         >
                           <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
