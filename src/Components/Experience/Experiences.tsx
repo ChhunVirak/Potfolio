@@ -47,9 +47,6 @@ const Experience = () => {
               <div
                 className={`w-full px-4 py-3 flex flex-col border-1 shadow-xl border-black dark:border-zinc-700 rounded-2xl ${value.present ? 'bg-gray-50 dark:bg-zinc-800' : 'dark:bg-zinc-800/50'}`}
               >
-                {value.present && (
-                  <i className='fa-solid fa-map-pin text-red-600 text-lg'></i>
-                )}
                 <h3 className='text-lg font-display font-semibold'>
                   {value.position}
                 </h3>
@@ -61,6 +58,12 @@ const Experience = () => {
                   <p className='text-base font-normal'>( {value.date} )</p>
                 </span>
                 <p className='text-base font-light'>{value.description}</p>
+                {value.present && (
+                  <span className='mt-1 self-start flex items-center gap-1.5 text-sm font-medium bg-lime-400 text-black px-2 py-0.5 rounded-full'>
+                    <i className='fa-solid fa-map-pin text-xs' />
+                    Current
+                  </span>
+                )}
               </div>
             </div>
           );

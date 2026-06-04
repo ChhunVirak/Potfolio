@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const SECTION_LINKS = [
@@ -14,44 +14,19 @@ type Props = { dark: boolean; toggle: () => void };
 
 const NavBar = ({ dark, toggle }: Props) => {
   const [open, setOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobilePortfolioOpen, setMobilePortfolioOpen] = useState(false);
-  const [homeVisible, setHomeVisible] = useState(false);
-  const dropdownRef = useRef<HTMLLIElement>(null);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isPortfolio = pathname === '/';
+  const isBlog = pathname.startsWith('/blog');
 
-  useEffect(() => {
-    const el = document.getElementById('home');
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setHomeVisible(entry.isIntersecting),
-      { threshold: 0.3 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [pathname]);
+  const navTitle = isBlog ? 'Blog' : 'Potfolio';
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setOpen(false);
-    setDropdownOpen(false);
     setMobilePortfolioOpen(false);
   };
-
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, []);
 
   return (
     <nav className='fixed top-0 left-0 z-10 w-screen bg-white dark:bg-zinc-900 shadow-lg'>
@@ -61,25 +36,21 @@ const NavBar = ({ dark, toggle }: Props) => {
           className='font-bold font-display text-xl transition-all'
           onClick={() => setOpen(false)}
         >
-          {homeVisible ? 'Potfolio' : 'Chhunvirak'}
+          {navTitle}
         </Link>
 
         <div className='flex items-center gap-4'>
           {/* Desktop links */}
           <ul className='hidden md:flex gap-6 font-normal items-center'>
             {/* Potfolio sections dropdown */}
-            <li className='relative' ref={dropdownRef}>
+            <li className='relative group'>
               <button
-                onClick={() => setDropdownOpen((v) => !v)}
                 className={`flex items-center gap-1 hover:text-lime-400 transition-colors ${isPortfolio ? 'text-lime-400' : ''}`}
               >
                 Potfolio
-                <i
-                  className={`fa-solid fa-chevron-down text-xs transition-transform ${dropdownOpen ? 'rotate-180' : ''}`}
-                />
+                <i className='fa-solid fa-chevron-down text-xs transition-transform group-hover:rotate-180' />
               </button>
-              {dropdownOpen && (
-                <ul className='absolute top-full left-0 mt-2 w-40 bg-white dark:bg-zinc-900 shadow-lg rounded-md border border-gray-100 dark:border-zinc-800 py-1'>
+              <ul className='absolute top-full left-0 mt-2 w-40 bg-white dark:bg-zinc-900 shadow-lg rounded-md border border-gray-100 dark:border-zinc-800 py-1 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150'>
                   {SECTION_LINKS.map((link) => (
                     <li key={link.id}>
                       {isPortfolio ? (
@@ -92,7 +63,7 @@ const NavBar = ({ dark, toggle }: Props) => {
                         </button>
                       ) : (
                         <button
-                          onClick={() => { navigate('/', { state: { scrollTo: link.id } }); setDropdownOpen(false); }}
+                          onClick={() => navigate('/', { state: { scrollTo: link.id } })}
                           className='flex items-center gap-2 w-full text-left px-4 py-2 hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
                         >
                           <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
@@ -102,7 +73,6 @@ const NavBar = ({ dark, toggle }: Props) => {
                     </li>
                   ))}
                 </ul>
-              )}
             </li>
 
             <li>
