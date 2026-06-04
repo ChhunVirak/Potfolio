@@ -59,6 +59,7 @@ const NavBar = ({ dark, toggle }: Props) => {
         <Link
           to='/'
           className='font-bold font-display text-xl transition-all'
+          onClick={() => setOpen(false)}
         >
           {homeVisible ? 'Potfolio' : 'Chhunvirak'}
         </Link>
@@ -152,7 +153,7 @@ const NavBar = ({ dark, toggle }: Props) => {
               onClick={() => setMobilePortfolioOpen((v) => !v)}
               className={`flex items-center gap-2 w-full text-left px-[5%] py-3 hover:text-lime-400 transition-colors ${isPortfolio ? 'text-lime-400' : ''}`}
             >
-              <i className='fa-solid fa-briefcase-blank w-4 text-center text-xs' />
+              <i className='fa-solid fa-folder w-4 text-center text-xs' />
               Potfolio
               <i
                 className={`fa-solid fa-chevron-down text-xs ml-auto transition-transform ${mobilePortfolioOpen ? 'rotate-180' : ''}`}
@@ -171,14 +172,13 @@ const NavBar = ({ dark, toggle }: Props) => {
                         {link.label}
                       </button>
                     ) : (
-                      <Link
-                        to={`/potfolio#${link.id}`}
-                        onClick={() => { setOpen(false); setMobilePortfolioOpen(false); }}
-                        className='flex items-center gap-2 pl-[calc(5%+1rem)] pr-[5%] py-2.5 hover:text-lime-400 transition-colors text-sm'
+                      <button
+                        onClick={() => { navigate('/', { state: { scrollTo: link.id } }); setOpen(false); setMobilePortfolioOpen(false); }}
+                        className='flex items-center gap-2 w-full text-left pl-[calc(5%+1rem)] pr-[5%] py-2.5 hover:text-lime-400 transition-colors text-sm'
                       >
                         <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
                         {link.label}
-                      </Link>
+                      </button>
                     )}
                   </li>
                 ))}

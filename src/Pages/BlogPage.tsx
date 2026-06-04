@@ -18,7 +18,7 @@ const BlogPage = () => {
 
   return (
     <>
-      <FeatureSection id='blog' title='Blog' icon='fa-rss' subtitle='Thoughts, learnings, and updates'>
+      <FeatureSection id='blog' title='Blog' icon='fa-rss' subtitle='Thoughts, learnings, and updates' badge={!loading && !error ? posts.length : undefined}>
         {loading && (
           <div className='w-full py-20 flex justify-center'>
             <i className='fa-solid fa-spinner animate-spin text-3xl text-lime-400' />
