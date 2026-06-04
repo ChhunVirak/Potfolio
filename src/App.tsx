@@ -4,6 +4,8 @@ import NavBar from './Components/Common/NavBar';
 import PortfolioPage from './Pages/PortfolioPage';
 import BlogPage from './Pages/BlogPage';
 import BlogDetailPage from './Pages/BlogDetailPage';
+import AdminBlogPage from './Pages/AdminBlogPage';
+import AdminEditBlogPage from './Pages/AdminEditBlogPage';
 
 function App() {
   const { dark, toggle } = useTheme();
@@ -17,6 +19,8 @@ function App() {
             <Route path='/' element={<PortfolioPage />} />
             <Route path='/blog' element={<BlogPage />} />
             <Route path='/blog/:id' element={<BlogDetailPage />} />
+            {import.meta.env.DEV && <Route path='/admin' element={<AdminBlogPage />} />}
+            {import.meta.env.DEV && <Route path='/admin/edit/:id' element={<AdminEditBlogPage />} />}
           </Routes>
         </main>
       </div>

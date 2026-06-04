@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer/Footer';
 import { fetchBlog, type BlogPost } from '../firebase/blog';
 
 const BlogDetailPage = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
@@ -23,13 +24,24 @@ const BlogDetailPage = () => {
   return (
     <>
       <div className='pt-[calc(60px+5%)] w-full max-w-6xl mx-auto px-[5%] pb-[5%]'>
-        <Link
-          to='/blog'
-          className='inline-flex items-center gap-2 text-sm hover:text-lime-400 transition-colors mb-6'
-        >
-          <i className='fa-solid fa-arrow-left text-xs' />
-          Back to Blog
-        </Link>
+        <div className='flex items-center justify-between mb-6'>
+          <Link
+            to='/blog'
+            className='inline-flex items-center gap-2 text-sm hover:text-lime-400 transition-colors'
+          >
+            <i className='fa-solid fa-arrow-left text-xs' />
+            Back to Blog
+          </Link>
+          {import.meta.env.DEV && id && (
+            <button
+              onClick={() => navigate(`/admin/edit/${id}`)}
+              className='inline-flex items-center gap-1.5 text-xs border border-gray-300 dark:border-zinc-600 px-3 py-1.5 rounded-full hover:border-lime-400 hover:text-lime-400 transition-colors'
+            >
+              <i className='fa-solid fa-pen text-[10px]' />
+              Edit
+            </button>
+          )}
+        </div>
 
         {loading && (
           <div className='w-full py-20 flex justify-center'>
