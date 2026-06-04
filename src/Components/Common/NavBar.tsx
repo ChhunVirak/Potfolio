@@ -16,7 +16,7 @@ const NavBar = ({ dark, toggle }: Props) => {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [homeVisible, setHomeVisible] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLLIElement>(null);
   const { pathname } = useLocation();
   const isPortfolio = pathname === '/potfolio' || pathname === '/';
 
@@ -39,7 +39,10 @@ const NavBar = ({ dark, toggle }: Props) => {
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setDropdownOpen(false);
       }
     };
@@ -50,7 +53,10 @@ const NavBar = ({ dark, toggle }: Props) => {
   return (
     <nav className='fixed top-0 left-0 z-10 w-screen bg-white dark:bg-zinc-900 shadow-lg'>
       <div className='h-[60px] px-[5%] flex flex-row justify-between items-center'>
-        <Link to='/potfolio' className='font-bold font-display text-2xl transition-all'>
+        <Link
+          to='/potfolio'
+          className='font-bold font-display text-2xl transition-all'
+        >
           {homeVisible ? 'Potfolio' : 'Chhoeung Chhun Virak'}
         </Link>
 
@@ -65,7 +71,9 @@ const NavBar = ({ dark, toggle }: Props) => {
                   className='flex items-center gap-1 hover:text-lime-400 transition-colors'
                 >
                   Potfolio
-                  <i className={`fa-solid fa-chevron-down text-xs transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                  <i
+                    className={`fa-solid fa-chevron-down text-xs transition-transform ${dropdownOpen ? 'rotate-180' : ''}`}
+                  />
                 </button>
                 {dropdownOpen && (
                   <ul className='absolute top-full left-0 mt-2 w-40 bg-white dark:bg-zinc-900 shadow-lg rounded-md border border-gray-100 dark:border-zinc-800 py-1'>
@@ -75,7 +83,9 @@ const NavBar = ({ dark, toggle }: Props) => {
                           onClick={() => scrollTo(link.id)}
                           className='flex items-center gap-2 w-full text-left px-4 py-2 hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
                         >
-                          <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
+                          <i
+                            className={`fa-solid ${link.icon} w-4 text-center text-xs`}
+                          />
                           {link.label}
                         </button>
                       </li>
@@ -110,9 +120,15 @@ const NavBar = ({ dark, toggle }: Props) => {
             onClick={() => setOpen((o) => !o)}
             aria-label='Toggle menu'
           >
-            <span className={`block w-6 h-0.5 bg-black dark:bg-white transition-transform ${open ? 'translate-y-2 rotate-45' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-black dark:bg-white transition-opacity ${open ? 'opacity-0' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-black dark:bg-white transition-transform ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+            <span
+              className={`block w-6 h-0.5 bg-black dark:bg-white transition-transform ${open ? 'translate-y-2 rotate-45' : ''}`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-black dark:bg-white transition-opacity ${open ? 'opacity-0' : ''}`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-black dark:bg-white transition-transform ${open ? '-translate-y-2 -rotate-45' : ''}`}
+            />
           </button>
         </div>
       </div>
@@ -127,7 +143,9 @@ const NavBar = ({ dark, toggle }: Props) => {
                   onClick={() => scrollTo(link.id)}
                   className='flex items-center gap-2 w-full text-left px-[5%] py-3 hover:text-lime-400 transition-colors'
                 >
-                  <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
+                  <i
+                    className={`fa-solid ${link.icon} w-4 text-center text-xs`}
+                  />
                   {link.label}
                 </button>
               </li>
