@@ -55,9 +55,9 @@ const NavBar = ({ dark, toggle }: Props) => {
       <div className='h-[60px] px-[5%] flex flex-row justify-between items-center'>
         <Link
           to='/potfolio'
-          className='font-bold font-display text-2xl transition-all'
+          className='font-bold font-display text-xl transition-all'
         >
-          {homeVisible ? 'Potfolio' : 'Chhoeung Chhun Virak'}
+          {homeVisible ? 'Potfolio' : 'Chhunvirak'}
         </Link>
 
         <div className='flex items-center gap-4'>
