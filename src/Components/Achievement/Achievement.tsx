@@ -7,6 +7,7 @@ const MyAchievements = [
     date: '2025',
     description:
       'Developed and maintained digital banking features for the iBank KH mobile application.',
+    link: 'https://ibank.com.kh/ibank-mobile/',
   },
   {
     title: 'Personal and Professional Certificate',
@@ -14,6 +15,7 @@ const MyAchievements = [
     date: '2023 - 2026',
     description:
       'Received internal certifications for professional development and technical excellence.',
+    link: '',
   },
   {
     title: 'BIC Mobile V3',
@@ -21,6 +23,7 @@ const MyAchievements = [
     date: '2023',
     description:
       'Contributed to the development and enhancement of the BIC Mobile V3 banking application.',
+    link: '',
   },
   {
     title: 'CIC App',
@@ -28,6 +31,7 @@ const MyAchievements = [
     date: '2022',
     description:
       'Worked on mobile application features and improvements for the CIC App project.',
+    link: '',
   },
   {
     title: 'Internship Trainer',
@@ -35,6 +39,7 @@ const MyAchievements = [
     date: '2022',
     description:
       'Mentored and trained 8 internship trainees, with all trainees successfully completing the program.',
+    link: '',
   },
   {
     title: 'Json To Freezed',
@@ -42,6 +47,7 @@ const MyAchievements = [
     date: '2022',
     description:
       'Built a utility tool to convert JSON models into Freezed classes for Flutter development.',
+    link: 'https://chhunvirak.github.io/JsonToFreezed/',
   },
 ];
 
@@ -59,7 +65,21 @@ const Achievement = () => {
             key={index}
             className='w-full px-4 py-3 flex flex-col border-1 border-black dark:border-zinc-700 dark:bg-zinc-800/50 shadow-xl rounded-2xl gap-1'
           >
-            <h3 className='text-lg font-display font-semibold'>{item.title}</h3>
+            <div className='flex items-center gap-2'>
+              <h3 className='text-lg font-display font-semibold'>
+                {item.title}
+              </h3>
+              {item.link && (
+                <a
+                  href={item.link}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-gray-400 hover:text-lime-400 transition-colors'
+                >
+                  <i className='fa-solid fa-arrow-up-right-from-square text-xs' />
+                </a>
+              )}
+            </div>
             <span className='flex flex-wrap gap-2'>
               <p className='font-semibold font-base'>{item.issuer}</p>
               <p className='font-normal'>( {item.date} )</p>

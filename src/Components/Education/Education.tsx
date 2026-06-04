@@ -27,7 +27,7 @@ const Education = () => {
   return (
     <FeatureSection
       id='education'
-      title='Education'
+      title='Educations'
       icon='fa-graduation-cap'
       subtitle='Academic Background and Scholarships That Shaped My Technical Foundation.'
     >

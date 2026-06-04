@@ -7,6 +7,7 @@ const MyExperiences = [
     date: 'Dec 2021 - March 2022',
     description:
       'Contributed to the development of scalable business software solutions across industries such as finance, retail, and entertainment. Gained hands-on experience in Flutter mobile app development, UI/UX implementation, and integration with backend services.',
+    link: '',
   },
   {
     position: 'Senior Officer, Flutter Mobile App Development',
@@ -14,6 +15,7 @@ const MyExperiences = [
     date: 'March 2022 - Aug 2023',
     description:
       'Led the design and development of high-performance Flutter applications, ensuring scalability and seamless user experiences. Collaborated with cross-functional teams to deliver innovative business solutions tailored to client needs.',
+    link: '',
   },
   {
     position: 'Software Developer',
@@ -21,6 +23,7 @@ const MyExperiences = [
     date: 'Aug 2023 - Aug 2025',
     description:
       'Developed and maintained the BIC Mobile V3 application, focusing on enhancing performance, security, and usability for banking customers.',
+    link: '',
   },
   {
     position: 'Software Developer',
@@ -29,6 +32,7 @@ const MyExperiences = [
     description:
       'Working on the iBank Kh mobile banking platform, building secure, user-friendly, and feature-rich digital banking solutions.',
     present: true,
+    link: 'https://ibank.com.kh/',
   },
 ];
 
@@ -47,9 +51,21 @@ const Experience = () => {
               <div
                 className={`w-full px-4 py-3 flex flex-col border-1 shadow-xl border-black dark:border-zinc-700 rounded-2xl ${value.present ? 'bg-gray-50 dark:bg-zinc-800' : 'dark:bg-zinc-800/50'}`}
               >
-                <h3 className='text-lg font-display font-semibold'>
-                  {value.position}
-                </h3>
+                <div className='flex items-center gap-2'>
+                  <h3 className='text-lg font-display font-semibold'>
+                    {value.position}
+                  </h3>
+                  {value.link && (
+                    <a
+                      href={value.link}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-gray-400 hover:text-lime-400 transition-colors'
+                    >
+                      <i className='fa-solid fa-arrow-up-right-from-square text-xs' />
+                    </a>
+                  )}
+                </div>
 
                 <span className='flex flex-wrap w-full gap-2'>
                   <h3 className='text-md font-semibold font-base'>

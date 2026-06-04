@@ -51,12 +51,12 @@ const GoTopButton = () => {
 
   return (
     <div className='fixed bottom-[6%] right-[2%] flex flex-col items-end z-[999] gap-2 transition-transform ease-in-out md:scale-[0.9] hover:scale-[1] duration-200'>
-      <a
-        href='#'
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className='bg-white/90 dark:bg-zinc-800/90 backdrop-blur-2xl px-4 aspect-square border border-gray-50 dark:border-zinc-700 flex gap-2 items-center rounded-full shadow-xl'
       >
         <i className='fa-solid fa-arrow-up'></i>
-      </a>
+      </button>
 
       {nextLabel !== 'top' && (
         <button
