@@ -31,34 +31,35 @@ The `postbuild` script copies `dist/index.html` into `dist/blog/` so GitHub Page
 
 ### Portfolio sections
 
-Rendered top-to-bottom in `PortfolioPage.tsx`:
-- `NavBar` — fixed top bar (rendered in `App.tsx`, shared across all routes)
-- `Home` — hero with name and typewriter animation
-- `Experience` — work history cards; current job shows a lime-400 "Current" badge
-- `Education` — degree cards; scholarships show a lime-400 badge
-- `Achievement` — milestone cards
-- `TechStack` — skills grid with Font Awesome brand icons
-- `Contact` (`Socials`) — social links + Gmail mailto
-- `Footer` — copyright and source link
-- `GoTopButton` — floating next-section / scroll-to-top button
+All copy lives in `src/data/portfolio.ts`; section components are presentational. Rendered top-to-bottom in `PortfolioPage.tsx` inside a `max-w-[1120px]` container:
+- `NavBar` — sticky top bar (rendered in `App.tsx`, shared across all routes)
+- `Home` — hero (role line with accent dot, name, lede, CTAs, photo) + "At a glance" facts row
+- `Work` — "Apps I've shipped" grid; projects without an `image` show a name tile
+- `Experience` — timeline rows
+- `Writing` — latest 3 Firestore posts; renders nothing when there are none
+- `Achievement` — "Recognition" timeline (id `recognition`)
+- `Education` — timeline rows
+- `TechStack` — "Stack" definition list (id `stack`)
+- `Contact` (`Socials`) — headline + text links
+- `Footer` — copyright, source link, back to top
+
+Design source: the "Portfolio Redesign — Chhun Virak" canvas (https://claude.ai/artifact/8L5WmghQyLfDV2jy6EpDTw).
 
 ### NavBar (`src/Components/Common/NavBar.tsx`)
 
-- Title shows **Potfolio** on `/` and **Blog** on `/blog*`
-- **Desktop**: "Potfolio" dropdown (hover) lists all sections; "Blog" is a direct link
-- **Mobile**: hamburger opens a menu with a collapsible "Potfolio" accordion and a "Blog" link
+- Name on the left; section links (`SECTION_LINKS`) plus a "Blog" route link on desktop; a "Menu"/"Close" text button opens a full-width list on mobile
 - Navigating to a section from a non-portfolio page uses `navigate('/', { state: { scrollTo: id } })`; `PortfolioPage` reads this state on mount and scrolls
 
 ### `FeatureSection` wrapper (`src/Components/Common/FeatureSection.tsx`)
 
 Used by all body sections. Props:
-- `id` — sets the HTML `id` for anchor scrolling
-- `title` — section heading (lime-400 pill)
-- `icon?` — Font Awesome class suffix (e.g. `fa-briefcase`) shown inside the heading pill
-- `subtitle?` — italic description line
-- `badge?` — numeric count pill shown next to the heading (used by BlogPage)
+- `id`, `title`
+- `layout?` — `'aside'` (default: small label column + content) or `'stacked'` (large heading above content)
+- `meta?` — node shown right of a stacked heading (date range, "All posts →")
+- `subtitle?`, `badge?` — muted description / post count (stacked only)
+- `className?` — overrides top spacing
 
-All new sections should use this component.
+Use `Timeline` (`Common/Timeline.tsx`) for date-on-the-left rows and `PostList` for blog post rows.
 
 ### Firebase / Firestore (`src/firebase/`)
 
@@ -67,7 +68,7 @@ All new sections should use this component.
 
 ### Styling
 
-Tailwind CSS v4 via `@tailwindcss/vite` plugin; configured in `src/index.css` using `@import 'tailwindcss'` and `@theme {}`. Custom fonts: `Rubik` (body/display, loaded via Google Fonts), `Koulen` (loaded in `index.html`). Icons from Font Awesome (kit loaded in `index.html`).
+Tailwind CSS v4 via `@tailwindcss/vite` plugin; configured in `src/index.css`. Color tokens are CSS variables (`--bg`, `--fg`, `--muted`, `--line`, `--chip`, `--accent`) redefined under `:root.dark`, exposed to Tailwind via `@theme inline` as `bg-bg`, `text-fg`, `text-muted`, `border-line`, `bg-chip`, `bg-accent`. Fonts: `Geist` (`font-sans`) and `Geist Mono` (`font-mono`, used for dates/labels) from Google Fonts. Icons are inline SVG; the Font Awesome kit in `index.html` is still used by the dev-only admin pages. `.link-ul` gives the draw-in underline; `.post-body` styles blog HTML.
 
 ### Theme system
 

@@ -1,174 +1,112 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-
-const SECTION_LINKS = [
-  { label: 'Home', id: 'home', icon: 'fa-house' },
-  { label: 'Experience', id: 'experience', icon: 'fa-briefcase' },
-  { label: 'Education', id: 'education', icon: 'fa-graduation-cap' },
-  { label: 'Achievements', id: 'achievements', icon: 'fa-trophy' },
-  { label: 'Tech Stack', id: 'tech-stack', icon: 'fa-layer-group' },
-  { label: 'Contact', id: 'contact', icon: 'fa-envelope' },
-];
+import { SECTION_LINKS } from '../../data/portfolio';
 
 type Props = { dark: boolean; toggle: () => void };
 
+const SunIcon = () => (
+  <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.6' strokeLinecap='round' aria-hidden='true'>
+    <circle cx='12' cy='12' r='4' />
+    <path d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4' />
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.6' strokeLinecap='round' strokeLinejoin='round' aria-hidden='true'>
+    <path d='M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z' />
+  </svg>
+);
+
 const NavBar = ({ dark, toggle }: Props) => {
   const [open, setOpen] = useState(false);
-  const [mobilePortfolioOpen, setMobilePortfolioOpen] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isPortfolio = pathname === '/';
-  const isBlog = pathname.startsWith('/blog');
 
-  const navTitle = isBlog ? 'Blog' : 'Potfolio';
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  // On the portfolio page, scroll in place; elsewhere, go home and let PortfolioPage scroll.
+  const goTo = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
     setOpen(false);
-    setMobilePortfolioOpen(false);
+    if (isPortfolio) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/', { state: { scrollTo: id } });
+    }
   };
 
   return (
-    <nav className='fixed top-0 left-0 z-10 w-screen bg-white dark:bg-zinc-900 shadow-lg'>
-      <div className='h-[60px] px-[5%] flex flex-row justify-between items-center'>
+    <header className='sticky top-0 z-10 border-b border-line bg-bg'>
+      <div className='mx-auto flex h-[68px] max-w-[1120px] items-center justify-between gap-6 px-5 md:px-8'>
         <Link
           to='/'
-          className='font-bold font-display text-xl transition-all'
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            setOpen(false);
+            if (isPortfolio) window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className='text-[15px] font-semibold tracking-[-0.01em]'
         >
-          {navTitle}
+          VIRAK
         </Link>
 
-        <div className='flex items-center gap-4'>
-          {/* Desktop links */}
-          <ul className='hidden md:flex gap-6 font-normal items-center'>
-            {/* Potfolio sections dropdown */}
-            <li className='relative group'>
-              <button
-                className={`flex items-center gap-1 hover:text-lime-400 transition-colors ${isPortfolio ? 'text-lime-400' : ''}`}
-              >
-                Potfolio
-                <i className='fa-solid fa-chevron-down text-xs transition-transform group-hover:rotate-180' />
-              </button>
-              <ul className='absolute top-full left-0 mt-2 w-40 bg-white dark:bg-zinc-900 shadow-lg rounded-md border border-gray-100 dark:border-zinc-800 py-1 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150'>
-                  {SECTION_LINKS.map((link) => (
-                    <li key={link.id}>
-                      {isPortfolio ? (
-                        <button
-                          onClick={() => scrollTo(link.id)}
-                          className='flex items-center gap-2 w-full text-left px-4 py-2 hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
-                        >
-                          <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
-                          {link.label}
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => navigate('/', { state: { scrollTo: link.id } })}
-                          className='flex items-center gap-2 w-full text-left px-4 py-2 hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors'
-                        >
-                          <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
-                          {link.label}
-                        </button>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-            </li>
-
-            <li>
-              <Link
-                to='/blog'
-                className={`flex items-center gap-1.5 hover:text-lime-400 transition-colors ${pathname === '/blog' ? 'text-lime-400' : ''}`}
-              >
-                <i className='fa-solid fa-rss text-xs' />
-                Blog
-              </Link>
-            </li>
-          </ul>
-
-          {/* Dark mode toggle */}
-          <button
-            onClick={toggle}
-            aria-label='Toggle dark mode'
-            className='w-8 h-8 flex items-center justify-center rounded-full border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors'
-          >
-            <i className={`fa-solid ${dark ? 'fa-sun' : 'fa-moon'} text-sm`} />
-          </button>
-
-          {/* Mobile hamburger */}
-          <button
-            className='md:hidden flex flex-col gap-1.5 p-2'
-            onClick={() => setOpen((o) => !o)}
-            aria-label='Toggle menu'
-          >
-            <span
-              className={`block w-6 h-0.5 bg-black dark:bg-white transition-transform ${open ? 'translate-y-2 rotate-45' : ''}`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-black dark:bg-white transition-opacity ${open ? 'opacity-0' : ''}`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-black dark:bg-white transition-transform ${open ? '-translate-y-2 -rotate-45' : ''}`}
-            />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {open && (
-        <ul className='md:hidden flex flex-col border-t border-gray-100 dark:border-zinc-800 bg-white dark:bg-zinc-900'>
-          {/* Potfolio group */}
-          <li>
-            <button
-              onClick={() => setMobilePortfolioOpen((v) => !v)}
-              className={`flex items-center gap-2 w-full text-left px-[5%] py-3 hover:text-lime-400 transition-colors ${isPortfolio ? 'text-lime-400' : ''}`}
-            >
-              <i className='fa-solid fa-folder w-4 text-center text-xs' />
-              Potfolio
-              <i
-                className={`fa-solid fa-chevron-down text-xs ml-auto transition-transform ${mobilePortfolioOpen ? 'rotate-180' : ''}`}
-              />
-            </button>
-            {mobilePortfolioOpen && (
-              <ul className='flex flex-col bg-gray-50 dark:bg-zinc-800/50 border-t border-gray-100 dark:border-zinc-700'>
-                {SECTION_LINKS.map((link) => (
-                  <li key={link.id}>
-                    {isPortfolio ? (
-                      <button
-                        onClick={() => scrollTo(link.id)}
-                        className='flex items-center gap-2 w-full text-left pl-[calc(5%+1rem)] pr-[5%] py-2.5 hover:text-lime-400 transition-colors text-sm'
-                      >
-                        <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
-                        {link.label}
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => { navigate('/', { state: { scrollTo: link.id } }); setOpen(false); setMobilePortfolioOpen(false); }}
-                        className='flex items-center gap-2 w-full text-left pl-[calc(5%+1rem)] pr-[5%] py-2.5 hover:text-lime-400 transition-colors text-sm'
-                      >
-                        <i className={`fa-solid ${link.icon} w-4 text-center text-xs`} />
-                        {link.label}
-                      </button>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-
-          <li>
+        <nav aria-label='Primary' className='flex items-center gap-7 text-sm'>
+          <span className='hidden items-center gap-7 md:flex'>
+            {SECTION_LINKS.map((link) => (
+              <a key={link.id} href={`#${link.id}`} onClick={(e) => goTo(e, link.id)} className='link-ul text-muted'>
+                {link.label}
+              </a>
+            ))}
             <Link
               to='/blog'
-              className={`flex items-center gap-2 px-[5%] py-3 hover:text-lime-400 transition-colors ${pathname === '/blog' ? 'text-lime-400' : ''}`}
-              onClick={() => setOpen(false)}
+              aria-current={pathname.startsWith('/blog') ? 'page' : undefined}
+              className={`link-ul ${pathname.startsWith('/blog') ? 'text-fg' : 'text-muted'}`}
             >
-              <i className='fa-solid fa-rss w-4 text-center text-xs' />
               Blog
             </Link>
-          </li>
-        </ul>
+          </span>
+
+          <button
+            type='button'
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+            aria-controls='mobile-menu'
+            className='flex h-11 cursor-pointer items-center border-0 bg-transparent px-1 font-medium text-fg md:hidden'
+          >
+            {open ? 'Close' : 'Menu'}
+          </button>
+
+          <button
+            type='button'
+            onClick={toggle}
+            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+            className='-mr-3 flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border-0 bg-transparent text-fg'
+          >
+            {dark ? <SunIcon /> : <MoonIcon />}
+          </button>
+        </nav>
+      </div>
+
+      {open && (
+        <nav id='mobile-menu' aria-label='Mobile' className='flex flex-col border-t border-line px-5 pt-2 pb-5 md:hidden'>
+          {SECTION_LINKS.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => goTo(e, link.id)}
+              className='flex h-[52px] items-center border-b border-line text-[22px] font-medium tracking-[-0.02em]'
+            >
+              {link.label}
+            </a>
+          ))}
+          <Link
+            to='/blog'
+            onClick={() => setOpen(false)}
+            className='flex h-[52px] items-center text-[22px] font-medium tracking-[-0.02em]'
+          >
+            Blog
+          </Link>
+        </nav>
       )}
-    </nav>
+    </header>
   );
 };
 

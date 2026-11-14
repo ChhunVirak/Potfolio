@@ -1,35 +1,66 @@
+import type { ReactNode } from 'react';
+
 type FeatureSectionProps = React.PropsWithChildren<{
   id: string;
   title: string;
-  subtitle?: string | undefined;
-  icon?: string | undefined;
-  badge?: number | undefined;
+  /**
+   * `aside`: small label in a left column, content to its right (timeline sections).
+   * `stacked`: large heading above the content (Work, Writing, Blog).
+   */
+  layout?: 'aside' | 'stacked';
+  /** Right-aligned extra next to a stacked heading — a date range or a link. */
+  meta?: ReactNode;
+  subtitle?: string;
+  /** Count shown next to a stacked heading (e.g. number of blog posts). */
+  badge?: number;
+  /** Override top spacing; defaults to 72px on mobile, 96px from md up. */
+  className?: string;
 }>;
+
 export const FeatureSection = ({
   id,
   title,
+  layout = 'aside',
+  meta,
   subtitle,
-  icon,
   badge,
+  className = 'pt-[72px] md:pt-24',
   children,
 }: FeatureSectionProps) => {
-  return (
-    <section
-      id={id}
-      className='pt-[calc(60px+5%)] w-full max-w-6xl mx-auto flex flex-col items-start px-[5%] gap-3'
-    >
-      <div className='flex items-center gap-2'>
-        <h2 className='flex items-center gap-2 bg-lime-400 text-black px-3 py-2 font-display font-semibold text-2xl'>
-          {icon && <i className={`fa-solid ${icon} text-xl`} />}
+  const headingId = `${id}-h`;
+
+  if (layout === 'aside') {
+    return (
+      <section
+        id={id}
+        aria-labelledby={headingId}
+        className={`flex flex-wrap gap-x-16 gap-y-8 ${className}`}
+      >
+        <h2 id={headingId} className='m-0 basis-full md:basis-[200px] shrink-0 grow-0 text-[15px] font-medium leading-relaxed'>
           {title}
         </h2>
-        {badge !== undefined && (
-          <span className='text-sm font-semibold bg-black dark:bg-white text-white dark:text-black px-2.5 py-1 rounded-full'>
-            {badge}
-          </span>
-        )}
+        <div className='min-w-0 grow-[999] basis-[560px]'>{children}</div>
+      </section>
+    );
+  }
+
+  return (
+    <section id={id} aria-labelledby={headingId} className={`flex flex-col gap-8 ${className}`}>
+      <div className='flex flex-col gap-2'>
+        <div className='flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3'>
+          <h2
+            id={headingId}
+            className='m-0 flex items-baseline gap-3 text-[clamp(1.75rem,3vw,2.25rem)] leading-tight font-semibold tracking-[-0.03em]'
+          >
+            {title}
+            {badge !== undefined && (
+              <span className='font-mono text-[13px] font-normal tracking-normal text-muted'>{badge}</span>
+            )}
+          </h2>
+          {meta}
+        </div>
+        {subtitle && <p className='m-0 max-w-xl text-muted'>{subtitle}</p>}
       </div>
-      {subtitle && <p className='italic font-light text-base'>{subtitle}</p>}
       {children}
     </section>
   );

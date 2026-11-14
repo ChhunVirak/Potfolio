@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer/Footer';
 import { fetchBlog, type BlogPost } from '../firebase/blog';
+import { formatPostDate, readMinutes } from '../utils/post';
 
 const BlogDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,64 +24,54 @@ const BlogDetailPage = () => {
 
   return (
     <>
-      <div className='pt-[calc(60px+5%)] w-full max-w-6xl mx-auto px-[5%] pb-[5%]'>
-        <div className='flex items-center justify-between mb-6'>
-          <Link
-            to='/blog'
-            className='inline-flex items-center gap-2 text-sm hover:text-lime-400 transition-colors'
-          >
-            <i className='fa-solid fa-arrow-left text-xs' />
-            Back to Blog
+      <div className='mx-auto min-h-[70vh] max-w-[720px] px-5 pt-10 pb-24 md:px-8 md:pt-16'>
+        <div className='mb-12 flex items-center justify-between'>
+          <Link to='/blog' className='link-ul font-mono text-[13px] text-muted'>
+            ← All posts
           </Link>
           {import.meta.env.DEV && id && (
             <button
+              type='button'
               onClick={() => navigate(`/admin/edit/${id}`)}
-              className='inline-flex items-center gap-1.5 text-xs border border-gray-300 dark:border-zinc-600 px-3 py-1.5 rounded-full hover:border-lime-400 hover:text-lime-400 transition-colors'
+              className='h-9 cursor-pointer rounded-full border border-line bg-transparent px-4 font-mono text-xs text-muted hover:text-fg'
             >
-              <i className='fa-solid fa-pen text-[10px]' />
               Edit
             </button>
           )}
         </div>
 
-        {loading && (
-          <div className='w-full py-20 flex justify-center'>
-            <i className='fa-solid fa-spinner animate-spin text-3xl text-lime-400' />
-          </div>
-        )}
+        {loading && <p className='font-mono text-[13px] text-muted'>Loading…</p>}
 
         {notFound && (
-          <div className='w-full py-20 flex flex-col items-center gap-4 text-gray-500 dark:text-gray-400'>
-            <i className='fa-solid fa-file-circle-question text-5xl' />
-            <p className='text-lg'>Post not found.</p>
+          <div className='flex flex-col gap-4'>
+            <h1 className='m-0 text-3xl font-semibold tracking-[-0.03em]'>Post not found</h1>
+            <p className='m-0 text-muted'>It may have been moved or unpublished.</p>
           </div>
         )}
 
         {post && (
-          <article className='flex flex-col gap-4'>
-            <div className='flex flex-col gap-2'>
-              <h1 className='text-3xl md:text-4xl font-display font-bold'>{post.title}</h1>
-              <div className='flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400'>
-                <i className='fa-regular fa-calendar text-xs' />
-                {post.createdAt?.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          <article className='flex flex-col gap-10'>
+            <header className='flex flex-col gap-5 border-b border-line pb-10'>
+              <div className='flex flex-wrap gap-x-6 gap-y-1 font-mono text-[13px] text-muted'>
+                <time dateTime={post.createdAt?.toDate?.().toISOString()}>{formatPostDate(post, 'long')}</time>
+                <span>{readMinutes(post)} min read</span>
               </div>
+              <h1 className='m-0 text-[clamp(2rem,5vw,3rem)] leading-[1.08] font-semibold tracking-[-0.035em]'>
+                {post.title}
+              </h1>
+              {post.excerpt && <p className='m-0 text-lg text-muted'>{post.excerpt}</p>}
               {post.tags?.length > 0 && (
-                <div className='flex flex-wrap gap-1.5'>
+                <ul aria-label='Tags' className='m-0 flex list-none flex-wrap gap-2 p-0'>
                   {post.tags.map((tag) => (
-                    <span key={tag} className='text-xs bg-lime-400 text-black px-2 py-0.5 rounded-full font-medium'>
-                      #{tag}
-                    </span>
+                    <li key={tag} className='rounded-full bg-chip px-2.5 py-0.5 font-mono text-xs text-muted'>
+                      {tag}
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
-            </div>
+            </header>
 
-            <hr className='border-gray-200 dark:border-zinc-700' />
-
-            <div
-              className='prose dark:prose-invert max-w-none font-light leading-relaxed'
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <div className='post-body' dangerouslySetInnerHTML={{ __html: post.content }} />
           </article>
         )}
       </div>

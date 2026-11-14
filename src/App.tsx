@@ -12,9 +12,9 @@ function App() {
 
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '') || '/'}>
-      <div className='dark:bg-zinc-900 dark:text-white min-h-screen'>
+      <div className='min-h-screen bg-bg text-fg'>
         <NavBar dark={dark} toggle={toggle} />
-        <main>
+        <main id='top'>
           <Routes>
             <Route path='/' element={<PortfolioPage />} />
             <Route path='/blog' element={<BlogPage />} />
