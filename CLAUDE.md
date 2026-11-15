@@ -34,7 +34,7 @@ The `postbuild` script copies `dist/index.html` into `dist/blog/` so GitHub Page
 All copy lives in `src/data/portfolio.ts`; section components are presentational. Rendered top-to-bottom in `PortfolioPage.tsx` inside a `max-w-[1120px]` container:
 - `NavBar` — sticky top bar (rendered in `App.tsx`, shared across all routes)
 - `Home` — hero (role line with accent dot, name, lede, CTAs, photo) + "At a glance" facts row
-- `Work` — "Apps I've shipped" grid; projects without an `image` show a name tile
+- `Work` — "Projects I've shipped" grid; projects without an `image` show a name tile
 - `Experience` — timeline rows
 - `Writing` — latest 3 Firestore posts; renders nothing when there are none
 - `Achievement` — "Recognition" timeline (id `recognition`)
@@ -59,7 +59,7 @@ Used by all body sections. Props:
 - `subtitle?`, `badge?` — muted description / post count (stacked only)
 - `className?` — overrides top spacing
 
-Use `Timeline` (`Common/Timeline.tsx`) for date-on-the-left rows and `PostList` for blog post rows.
+Use `Timeline` (`Common/Timeline.tsx`) for date-on-the-left rows and `PostList` for blog post rows. A `TimelineItem` can take `images` for a thumbnail grid; the certificates and ADF items load theirs automatically from `src/assets/images/certificates/` and `src/assets/images/adf/` (sorted by filename, which is also used as alt text).
 
 ### Firebase / Firestore (`src/firebase/`)
 

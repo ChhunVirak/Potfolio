@@ -5,14 +5,14 @@ import { SECTION_LINKS } from '../../data/portfolio';
 type Props = { dark: boolean; toggle: () => void };
 
 const SunIcon = () => (
-  <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.6' strokeLinecap='round' aria-hidden='true'>
+  <svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' aria-hidden='true'>
     <circle cx='12' cy='12' r='4' />
     <path d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4' />
   </svg>
 );
 
 const MoonIcon = () => (
-  <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.6' strokeLinecap='round' strokeLinejoin='round' aria-hidden='true'>
+  <svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' aria-hidden='true'>
     <path d='M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z' />
   </svg>
 );
@@ -61,14 +61,23 @@ const NavBar = ({ dark, toggle }: Props) => {
     }
   };
 
+  // Sliding switch: the thumb carries the current mode's icon.
   const themeButton = (
     <button
       type='button'
+      role='switch'
+      aria-checked={dark}
+      aria-label='Dark mode'
       onClick={toggle}
-      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className='-mr-3 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent text-fg transition-colors hover:bg-chip'
+      className='group flex h-11 cursor-pointer items-center border-0 bg-transparent p-0'
     >
-      {dark ? <SunIcon /> : <MoonIcon />}
+      <span className='relative block h-6 w-11 rounded-full border border-line bg-chip transition-colors group-hover:border-muted'>
+        <span
+          className={`absolute top-1/2 left-[2px] flex h-[18px] w-[18px] -translate-y-1/2 items-center justify-center rounded-full bg-fg text-bg shadow-sm transition-transform duration-300 ${dark ? 'translate-x-5' : 'translate-x-0'}`}
+        >
+          {dark ? <MoonIcon /> : <SunIcon />}
+        </span>
+      </span>
     </button>
   );
 
@@ -92,13 +101,13 @@ const NavBar = ({ dark, toggle }: Props) => {
               setOpen(false);
               if (isPortfolio) window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className='text-lg font-semibold tracking-[0.02em] md:text-[15px] md:tracking-[-0.01em]'
+            className='text-xl font-bold tracking-[0.02em] md:text-[17px] md:tracking-[-0.01em]'
           >
             VIRAK
           </Link>
         </div>
 
-        <nav aria-label='Primary' className='flex items-center gap-8 text-[15px] font-medium'>
+        <nav aria-label='Primary' className='flex items-center gap-8 text-[15px] font-[450]'>
           <span className='hidden items-center gap-8 md:flex'>
             {SECTION_LINKS.map((link) => (
               <a key={link.id} href={`#${link.id}`} onClick={(e) => goTo(e, link.id)} className='link-ul text-muted'>

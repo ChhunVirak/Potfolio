@@ -24,7 +24,7 @@ const Cover = ({ project }: { project: Project }) =>
 const Work = () => (
   <FeatureSection
     id='work'
-    title="Apps I've shipped"
+    title="Projects I've shipped"
     layout='stacked'
     className='pt-[72px] md:pt-28'
     meta={<span className='font-mono text-[13px] text-muted'>{range}</span>}

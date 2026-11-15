@@ -3,6 +3,24 @@ import iBankMobile from '../assets/images/iBank-Mobile.png';
 import cicApp from '../assets/images/CiC-App.png';
 import iBankWeb from '../assets/images/iBank-KH-Web.png';
 
+// Drop photos into these folders and they show up as a thumbnail grid — sorted by filename.
+const toGallery = (modules: Record<string, string>) =>
+  Object.keys(modules)
+    .sort()
+    .map((path) => ({
+      src: modules[path],
+      alt: (path.split('/').pop() ?? '').replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' '),
+    }));
+
+const CERTIFICATE_IMAGES = toGallery(
+  import.meta.glob('../assets/images/certificates/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' }),
+);
+const ADF_IMAGES = toGallery(
+  import.meta.glob('../assets/images/adf/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' }),
+);
+
+export type GalleryImage = { src: string; alt: string };
+
 export type TimelineItem = {
   date: string;
   title: string;
@@ -10,6 +28,8 @@ export type TimelineItem = {
   /** Optional bullet list under the description (e.g. individual certificates). */
   items?: string[];
   link?: string;
+  /** Optional thumbnail grid (certificates, event photos). */
+  images?: GalleryImage[];
 };
 
 export type Project = {
@@ -113,6 +133,7 @@ export const RECOGNITION: TimelineItem[] = [
       'Communication Skills',
       'Time Management',
     ],
+    images: CERTIFICATE_IMAGES,
   },
   {
     date: '2022',
@@ -132,6 +153,7 @@ export const EDUCATION: TimelineItem[] = [
     title: 'ADF Elite Scholarship · Asian Development Fund',
     description:
       "Four-year scholarship supporting Cambodian students' studies, leadership and community work.",
+    images: ADF_IMAGES,
   },
   {
     date: '2016 — 2019',
@@ -143,8 +165,8 @@ export const STACK_INTRO = 'Full stack, mobile first — from the screen people 
 
 export const STACK = [
   { group: 'Mobile', items: ['Flutter', 'Dart'] },
-  { group: 'Frontend', items: ['React', 'TypeScript', 'JavaScript', 'Tailwind CSS'] },
-  { group: 'Backend', items: ['Java', 'Node.js', 'REST APIs', 'Firebase', 'Cloud Firestore'] },
+  { group: 'Frontend', items: ['React', 'Next Js' , 'TypeScript', 'JavaScript', 'Tailwind CSS'] },
+  { group: 'Backend', items: ['Java', 'Node.js', 'REST APIs', 'Firebase'] },
   { group: 'Design & tooling', items: ['Figma', 'Git', 'Vite'] },
   { group: 'AI tools', items: ['Claude', 'Claude Code', 'ChatGPT', 'Gemini'] },
 ];

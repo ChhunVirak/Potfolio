@@ -33,6 +33,27 @@ const Timeline = ({ items }: { items: TimelineItem[] }) => (
               ))}
             </ul>
           )}
+          {item.images && item.images.length > 0 && (
+            <ul className='mt-4 mb-0 grid list-none grid-cols-3 gap-2 p-0 sm:grid-cols-4'>
+              {item.images.map((img) => (
+                <li key={img.src}>
+                  <a
+                    href={img.src}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='block aspect-[4/3] overflow-hidden rounded-md border border-line bg-chip'
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      loading='lazy'
+                      className='h-full w-full object-cover transition-transform duration-300 hover:scale-105'
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </li>
     ))}
