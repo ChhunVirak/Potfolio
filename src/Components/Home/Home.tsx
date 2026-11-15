@@ -1,4 +1,4 @@
-import MeSunset from '../../assets/png/Me-sunset.jpg';
+import MeSunset from '../../assets/images/Me.webp';
 import { FACTS, PROFILE } from '../../data/portfolio';
 
 const Home = () => (
@@ -9,7 +9,7 @@ const Home = () => (
       className='flex flex-wrap items-end gap-9 pt-10 pb-12 md:gap-14 md:pt-28 md:pb-[88px]'
     >
       <div className='flex min-w-0 grow basis-[480px] flex-col gap-7'>
-        <div className='flex items-center gap-2.5 font-mono text-[13px] text-muted'>
+        <div className='flex items-center gap-2.5 text-sm font-medium text-muted'>
           <span aria-hidden='true' className='h-2 w-2 rounded-full bg-accent' />
           <span>{PROFILE.role}</span>
         </div>

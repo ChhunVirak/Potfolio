@@ -1,7 +1,7 @@
 // All portfolio copy lives here so the section components stay presentational.
-import iBankMobile from '../assets/png/iBank-Mobile.png';
-import cicApp from '../assets/png/CiC-App.png';
-import iBankWeb from '../assets/png/iBank-KH-Web.jpg';
+import iBankMobile from '../assets/images/iBank-Mobile.png';
+import cicApp from '../assets/images/CiC-App.png';
+import iBankWeb from '../assets/images/iBank-KH-Web.png';
 
 export type TimelineItem = {
   date: string;

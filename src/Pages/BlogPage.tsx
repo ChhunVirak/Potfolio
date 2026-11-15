@@ -21,7 +21,7 @@ const BlogPage = () => {
       <div className='mx-auto min-h-[70vh] max-w-[1120px] px-5 pb-24 md:px-8'>
         <FeatureSection
           id='blog'
-          title='Field notes'
+          title='Blog'
           layout='stacked'
           subtitle='Thoughts, learnings and updates.'
           badge={!loading && !error ? posts.length : undefined}

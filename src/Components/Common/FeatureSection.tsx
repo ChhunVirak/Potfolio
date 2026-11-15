@@ -11,7 +11,7 @@ type FeatureSectionProps = React.PropsWithChildren<{
   /** Right-aligned extra next to a stacked heading — a date range or a link. */
   meta?: ReactNode;
   subtitle?: string;
-  /** Count shown next to a stacked heading (e.g. number of blog posts). */
+  /** Article count shown next to a stacked heading, as "N articles". */
   badge?: number;
   /** Override top spacing; defaults to 72px on mobile, 96px from md up. */
   className?: string;
@@ -54,7 +54,9 @@ export const FeatureSection = ({
           >
             {title}
             {badge !== undefined && (
-              <span className='font-mono text-[13px] font-normal tracking-normal text-muted'>{badge}</span>
+              <span className='font-mono text-[13px] font-normal tracking-normal text-muted'>
+                {badge} {badge === 1 ? 'article' : 'articles'}
+              </span>
             )}
           </h2>
           {meta}
