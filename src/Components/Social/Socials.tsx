@@ -1,4 +1,4 @@
-import { CONTACT_LINKS } from '../../data/portfolio';
+import { CONTACT_LINKS, RESUME_URL } from '../../data/portfolio';
 
 const Contact = () => (
   <section
@@ -24,6 +24,11 @@ const Contact = () => (
           </a>
         </li>
       ))}
+      <li>
+        <a className='link-ul' href={RESUME_URL} download>
+          Résumé ↓
+        </a>
+      </li>
     </ul>
   </section>
 );

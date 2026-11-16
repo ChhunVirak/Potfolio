@@ -19,6 +19,9 @@ const ADF_IMAGES = toGallery(
   import.meta.glob('../assets/images/adf/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' }),
 );
 
+// CV lives in public/ and is deployed as-is.
+export const RESUME_URL = `${import.meta.env.BASE_URL}${encodeURIComponent("Chhoeung Chhun Virak's CV.pdf")}`;
+
 export type GalleryImage = { src: string; alt: string };
 
 export type TimelineItem = {
@@ -63,7 +66,7 @@ export const PROJECTS: Project[] = [
     year: '2025',
     meta: 'iBank Cambodia · Mobile banking',
     description: 'Digital banking features for the iBank KH app, built and maintained end to end.',
-    link: 'https://ibank.com.kh/personal/ibank-kh-mobile',
+    link: 'https://apps.apple.com/us/app/ibank-kh/id6759181803',
     image: iBankMobile,
   },
   {
@@ -91,6 +94,7 @@ export const PROJECTS: Project[] = [
     year: '2022',
     meta: 'Z1 Flexible Solution · Client project',
     description: 'Features and improvements across the CIC mobile app.',
+    link: 'https://play.google.com/store/apps/details?id=com.cambodianinvestorscorporation&hl=en',
     image: cicApp,
   },
 ];
@@ -174,6 +178,7 @@ export const STACK = [
 export const CONTACT_LINKS = [
   { label: 'Email', href: 'mailto:chhunvirakchhoeung@gmail.com' },
   { label: 'GitHub', href: 'https://github.com/ChhunVirak' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/chhoeung-chhun-virak-7b7a66263' },
   { label: 'Telegram', href: 'https://t.me/VirakChhun' },
   { label: 'Facebook', href: 'https://www.facebook.com/somnang.chan.52' },
 ];

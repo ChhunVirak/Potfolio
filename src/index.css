@@ -13,11 +13,11 @@
 }
 
 :root.dark {
-  --bg: #1a1a18;
+  --bg: #121211;
   --fg: #edede9;
   --muted: #a3a39c;
-  --line: #31312e;
-  --chip: #242422;
+  --line: #2a2a27;
+  --chip: #1c1c1a;
 }
 
 @theme inline {

@@ -1,5 +1,5 @@
 import MeSunset from '../../assets/images/Me.webp';
-import { FACTS, PROFILE } from '../../data/portfolio';
+import { FACTS, PROFILE, RESUME_URL } from '../../data/portfolio';
 
 const Home = () => (
   <>
@@ -36,6 +36,9 @@ const Home = () => (
             className='link-ul text-[15px] font-medium'
           >
             GitHub ↗
+          </a>
+          <a href={RESUME_URL} download className='link-ul text-[15px] font-medium'>
+            Résumé ↓
           </a>
         </div>
       </div>
